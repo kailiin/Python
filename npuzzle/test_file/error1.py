@@ -29,8 +29,14 @@
 # 1 S 0
 # 8 7 5
 
+# # data error
+#  3   asdas
+# 2 3 6
+# 1 4 0
+# 8 7 5
+
 # data error
- 3   asdas
-2 3 6
+ 3 #tests  
+2 3# 6
 1 4 0
 8 7 5

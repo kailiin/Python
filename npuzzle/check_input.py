@@ -7,9 +7,14 @@ def ft_find_rang(line):
 	content = line.split()
 	rang = None
 	for c in content:
-		if c.find("#") == 0:
+		comment_index = c.find("#")
+		if comment_index == 0:
 			return rang
-		elif c.isnumeric() and rang == None:
+		elif comment_index > 0:
+			c = c[0:comment_index]
+			if c.isnumeric() and rang == None:
+				return int(c)
+		if c.isnumeric() and rang == None:
 			rang = int(c)
 		else:
 			return -1
@@ -20,9 +25,16 @@ def ft_check_line(line, rang, listnumber):
 	max = rang * rang
 	content = line.split()
 	for c in content:
-		if c.find("#") == 0:
+		comment_index = c.find("#")
+		if comment_index == 0:
 			break
-		elif c.isnumeric() and int(c) < max and counter < max and listnumber.count(int(c)) == 0:
+		elif comment_index > 0:
+			c = c[0:comment_index]
+			if c.isnumeric() and int(c) < max and counter < max and listnumber.count(int(c)) == 0:
+				listnumber.append(int(c))
+				counter += 1
+				break
+		if c.isnumeric() and int(c) < max and counter < max and listnumber.count(int(c)) == 0:
 			listnumber.append(int(c))
 			counter += 1
 		else:
