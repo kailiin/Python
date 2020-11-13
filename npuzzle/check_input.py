@@ -5,14 +5,15 @@ import sys
 
 def ft_find_rang(line):  
 	content = line.split()
+	rang = None
 	for c in content:
 		if c.find("#") == 0:
-			return None
-		elif c.isnumeric():
-			return int(c)
-		elif c != " ":
+			return rang
+		elif c.isnumeric() and rang == None:
+			rang = int(c)
+		else:
 			return -1
-	return None
+	return rang
 
 def ft_check_line(line, rang, listnumber):
 	counter = 0
@@ -21,7 +22,7 @@ def ft_check_line(line, rang, listnumber):
 	for c in content:
 		if c.find("#") == 0:
 			break
-		elif c.isdigit() and int(c) < max and counter < max and listnumber.count(int(c)) == 0:
+		elif c.isnumeric() and int(c) < max and counter < max and listnumber.count(int(c)) == 0:
 			listnumber.append(int(c))
 			counter += 1
 		else:
@@ -32,21 +33,23 @@ def ft_check_line(line, rang, listnumber):
 
 def ft_check_input(file_name):
 	rang = None
+	count_rang = 0
 	listnumber = []
 	with open(file_name, 'r') as f:
 		for line in f:
 			if rang == None:
 				rang = ft_find_rang(line)
 				if rang !=None and rang < 3:
-					print("error: ", rang)
+					print("error: ", rang) #####################  test print   ########################
 					return False
 			elif ft_check_line(line, rang, listnumber):
+				count_rang +=1
 				continue
 			else:
 				return False
-	if rang ==None or rang < 3:
+	if rang ==None or rang < 3 or count_rang != rang:
 		return False
-		
+
 	# print file info			
 	print(rang)
 	counter = 0
@@ -58,9 +61,7 @@ def ft_check_input(file_name):
 			print("")
 	
 	return True
-
-
-			
+		
 
 
 if __name__ == "__main__":
