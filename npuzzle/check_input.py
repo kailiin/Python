@@ -4,11 +4,11 @@
 import sys
 
 def ft_find_rang(line):  
-	content = line.split(' ')
+	content = line.split()
 	for c in content:
-		if c == "#":
+		if c.find("#") == 0:
 			return None
-		elif c.isdigit() and c.isnumeric():
+		elif c.isnumeric():
 			return int(c)
 		elif c != " ":
 			return -1
@@ -17,16 +17,18 @@ def ft_find_rang(line):
 def ft_check_line(line, rang, listnumber):
 	counter = 0
 	max = rang * rang
-	content = line.split(' ')
+	content = line.split()
 	for c in content:
-		if c == '#' or c.find("#") == 0:
+		if c.find("#") == 0:
 			break
-		if c.isdigit() and int(c) < max and counter < max and listnumber.count(int(c)) == 0:
+		elif c.isdigit() and int(c) < max and counter < max and listnumber.count(int(c)) == 0:
 			listnumber.append(int(c))
 			counter += 1
 		else:
 			return False
-	return True
+	if counter == 0 or counter ==rang:
+		return True
+	return False
 
 def ft_check_input(file_name):
 	rang = None
@@ -44,6 +46,7 @@ def ft_check_input(file_name):
 				return False
 	if rang ==None or rang < 3:
 		return False
+		
 	# print file info			
 	print(rang)
 	counter = 0
