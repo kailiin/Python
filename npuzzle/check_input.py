@@ -84,3 +84,6 @@ if __name__ == "__main__":
 			print("fille error")
 	else:
 		print("usage : python3 argv1 argv2")
+
+
+# check si rang = 2 ou = 1

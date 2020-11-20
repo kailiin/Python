@@ -23,10 +23,10 @@
 # 1 4 0
 # 8 7 5
 
-# data error
+# data error  2.9 or "A"
 # 3
 # 2.9 3 6
-# 1 S 0
+# 1 A 0
 # 8 7 5
 
 # # data error
