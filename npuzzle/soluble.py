@@ -1,0 +1,27 @@
+#!/usr/bin/python3
+# coding: utf-8
+
+import math 
+
+# Wifi Fr: The parity of the empty case being identical to the parity of the permutation, the resolution is possible.
+# ex: (empty_parity % 2) == (permutation_parity % 2)
+def check_soluble(b=[], final_b=[]):
+	side = int(math.sqrt(len(b)))
+	empty_parity = abs(final_b.index(0) % side - b.index(0) % side) + abs(int(final_b.index(0) / side) - int(b.index(0) / side))
+	permutation_parity = 0
+	copy = b.copy()
+	for i in range(len(copy)):
+		if copy[i] != final_b[i]:
+			index = copy.index(final_b[i])
+			copy[index] = copy[i]
+			copy[i] = final_b[i]
+			permutation_parity += 1
+	print("empty_parity: ", empty_parity , " -> ", empty_parity % 2)
+	print("permutation_parity: ", permutation_parity, " -> ", permutation_parity % 2)
+	if (empty_parity % 2) == (permutation_parity % 2):
+		return True
+	return False
+			
+			
+
+	
