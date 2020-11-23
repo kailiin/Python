@@ -3,6 +3,7 @@
 
 import math
 import sys
+import time
 import check_input
 from puzzle import Puzzle
 import final_board
@@ -57,7 +58,7 @@ def check_in(board=None, puzzle=None, l_p=[]):
 		i += 1
 	return -1
 
-def print_result(result):
+def print_result(result, exec_time):
 	side = int(math.sqrt(len(result.board)))
 	i = 0
 	my_list = []
@@ -75,13 +76,15 @@ def print_result(result):
 				print("")
 		print("")
 	print("Cost: ", len(my_list) - 1)
+	print("Time: ", exec_time, "s")
 
 def a_star(board, ft_heuristic, final_b):
+	start_time = time.time()
 	l_open = [Puzzle(0, manhattan(board), None, board)]
 	l_close = []
 	while l_open:
 		if check_in(final_b, None, l_open) >= 0:
-			print_result(l_open[check_in(final_b, None, l_open)])
+			print_result(l_open[check_in(final_b, None, l_open)], time.time() - start_time)
 			return
 		else:
 			best_node = find_best(l_open)
