@@ -1,8 +1,10 @@
-# PONIES
-# empty parite = 1
-# permutation parity = 15
-4  
-15 2 6 4
-14 7 13 10
-1 3 9 8
-12 5 11 0
+# 28
+# manhattan 624
+# euclidean 4864
+# out of place 214676
+
+4
+1 3 7 0
+13 2 8 4
+9 11 15 14
+12 10 6 5

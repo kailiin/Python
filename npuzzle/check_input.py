@@ -48,7 +48,7 @@ def check_line(line, rang, listnumber):
 			counter += 1
 		else:
 			return -1
-	if counter == rang:
+	if counter == rang or len(content) == 0:
 		return counter
 	return -1
 
@@ -72,7 +72,7 @@ def check_input(file_name):
 					raise Exception("Puzzle content error.")
 		if rang == None or count_rang != rang:
 			raise Exception("Puzzle error: check rang and content.")
-		return listnumber
+		return tuple(listnumber)
 	except Exception as e:
 		print("Exception:", e)
 		sys.exit()

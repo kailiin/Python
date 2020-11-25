@@ -1,4 +1,8 @@
-# 	init_b = [8,4,6,2,3,5,1,0,7]
+# 17
+# manhattan 70
+# euclidean 150
+# out of place 873
+
 3
 8 4 6
 2 3 5

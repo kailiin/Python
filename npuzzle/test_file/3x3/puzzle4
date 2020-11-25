@@ -1,0 +1,11 @@
+# 24 1190
+# with if neighbor.costF <= best_node.costF: add first
+# 24 307
+# manhattan 1079
+# euclidean 2313
+# out of place 20968
+
+3
+5 7 6
+4 0 2
+8 1 3

@@ -10,7 +10,6 @@ class Puzzle:
 		self.parent = p
 		self.board = b
 
-	def switch_parent(self, new_p):
-		self.parent = new_p
-	
+	def __lt__(self, other):
+		return self.costF < other.costF
 	
