@@ -3,7 +3,7 @@
 
 import math 
 
-# Wifi Fr: The parity of the empty case being identical to the parity of the permutation, the resolution is possible.
+# Wifi Fr: La parité de la case vide étant identique à la parité de la permutation, la résolution est possible.
 # ex: (empty_parity % 2) == (permutation_parity % 2)
 	# print("empty_parity: ", empty_parity , " -> ", empty_parity % 2)
 	# print("permutation_parity: ", permutation_parity, " -> ", permutation_parity % 2)
