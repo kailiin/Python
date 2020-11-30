@@ -31,14 +31,19 @@ def find_neighbor(puzzle, side, ft_heuristic):
 		l_tmp.append(set_neighbor(i, i + side, puzzle, side, ft_heuristic))
 	return l_tmp
 
-def print_result(side, result, my_dict, exec_time, nb_node):
-	i = 0
+def print_result(side, open, close, exec_time):
+	complexity_time = len(close)
+	complexity_size = len(close) + len(open)
+	final = my_dict.final_dict[side]
+	close.update(open)
+	result = close[final]
 	my_list = []
 	while result[4] != None:
 		my_list.insert(0, result[3])
-		result = my_dict[result[4]]
+		result = close[result[4]]
 	my_list.insert(0, result[3])
 
+	i = 0
 	for b in my_list:
 		for nb in b:
 			print(f"{nb} ", end="")
@@ -50,8 +55,10 @@ def print_result(side, result, my_dict, exec_time, nb_node):
 				print("")
 		print("")
 	print(f"Cost: {len(my_list) - 1}")
-	print(f"Time: {exec_time:.5f}")
-	print(f"Node: {nb_node}")
+	print(f"Time complexity: {complexity_time}")
+	print(f"Size complexity: {complexity_size}")
+	print(f"Time: {exec_time:.5f} sec")
+
 
 # puzzle: (0= costF, 1= costD, 2= costC, 3= board, 4= parent)
 # heapq: binary trees -> push / pop and return the smallest item from the heap
@@ -69,9 +76,7 @@ def a_star(board, ft_heuristic, side):
 	while list_open:
 		if final in dict_open:
 			time_use = time.time() - start_time
-			# complexity_time = len(list_open)
-			dict_close.update(dict_open)
-			print_result(side, dict_open[final], dict_close, time_use, len(dict_close))
+			print_result(side, dict_open, dict_close, time_use)
 			return
 		else:
 			puzzle = heapq.heappop(list_open)
@@ -114,5 +119,5 @@ if __name__ == "__main__":
 	else:
 		print("usage: python3 ./main.py file_name")
 
-# complexity in size and complexity in time a definir
+# test sur 5x5  bonus: spped mode?
 # del les commentaires ?
