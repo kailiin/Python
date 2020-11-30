@@ -43,10 +43,9 @@ def ft_check_equation(s):
 	i = 0
 	max = my_equation["max"]
 	bool_first = True
+	print(f"Reduced form: ", end="")
 	while i <= max:
-		if i == 0:
-			print(f"Reduced form: ", end="")
-		elif i in my_equation.keys() and my_equation[i] > 0:
+		if i in my_equation.keys() and my_equation[i] > 0:
 			if bool_first:
 				print(f"{ft_format(my_equation, i)} ", end="")
 				bool_first = False
