@@ -6,8 +6,9 @@ import sys
 import heapq 
 import time
 import check_input
-import soluble
+import solvable
 import my_dict
+import graphical_interface
 
 def set_neighbor(x, y, puzzle, side, ft_heuristic):
 	board = puzzle[3]
@@ -31,7 +32,7 @@ def find_neighbor(puzzle, side, ft_heuristic):
 		l_tmp.append(set_neighbor(i, i + side, puzzle, side, ft_heuristic))
 	return l_tmp
 
-def print_result(side, open, close, exec_time):
+def print_result(side, open, close, exec_time, graphic):
 	complexity_time = len(close)
 	complexity_size = len(close) + len(open)
 	final = my_dict.final_dict[side]
@@ -58,11 +59,13 @@ def print_result(side, open, close, exec_time):
 	print(f"Time complexity: {complexity_time}")
 	print(f"Size complexity: {complexity_size}")
 	print(f"Time: {exec_time:.5f} sec")
+	if graphic:
+		graphical_interface.init_result(my_list, side)
 
 
 # puzzle: (0= costF, 1= costD, 2= costC, 3= board, 4= parent)
 # heapq: binary trees -> push / pop and return the smallest item from the heap
-def a_star(board, ft_heuristic, side):
+def a_star(board, ft_heuristic, side, graphic):
 	start_time = time.time()
 	list_open = []
 	dict_open = {}
@@ -76,7 +79,7 @@ def a_star(board, ft_heuristic, side):
 	while list_open:
 		if final in dict_open:
 			time_use = time.time() - start_time
-			print_result(side, dict_open, dict_close, time_use)
+			print_result(side, dict_open, dict_close, time_use, graphic)
 			return
 		else:
 			puzzle = heapq.heappop(list_open)
@@ -100,24 +103,37 @@ def a_star(board, ft_heuristic, side):
 					dict_open[n_key] = neighbor
 				# if n_key in dict_close:
 				# 	pass
-	print("Puzzle insoluble")
+	print("Puzzle unsolvable")
 
 if __name__ == "__main__":
-	if len(sys.argv) == 2:
-		init_b = check_input.check_input(sys.argv[1])
+	if len(sys.argv) == 2 or (len(sys.argv) == 3 and sys.argv[1] == "-g"):
+		if len(sys.argv) == 2:
+			init_b = check_input.check_input(sys.argv[1])
+		else:
+			init_b = check_input.check_input(sys.argv[2])
 		side = int(math.sqrt(len(init_b)))
-		if soluble.check_soluble(init_b, my_dict.final_dict[side]):
+		if solvable.check_solvable(init_b, my_dict.final_dict[side]):
 			print("Chose your heuristic function:")
 			print("1: Manhattan")
 			print("2: Euclidean")
 			print("3: Tiles out-of-place")
 			nb = input()
 			if nb in ["1", "2", "3"]:
-				a_star(init_b, my_dict.heuristic_func[nb], side)
+				if len(sys.argv) == 2:
+					a_star(init_b, my_dict.heuristic_func[nb], side, False)
+				else:
+					a_star(init_b, my_dict.heuristic_func[nb], side, True)
 		else:
-			print("Puzzle insoluble")
+			print("Puzzle unsolvable")
+	elif len(sys.argv) == 3 and sys.argv[1] == "-p":
+		init_b = check_input.check_input(sys.argv[2])
+		side = int(math.sqrt(len(init_b)))
+		if solvable.check_solvable(init_b, my_dict.final_dict[side]):
+			graphical_interface.init_play(list(init_b), side)
+		else:
+			print("Puzzle unsolvable")
 	else:
-		print("usage: python3 ./main.py file_name")
+		print("usage: python3 ./main.py [-p -g] file_name")
 
 # test sur 5x5  bonus: spped mode?
 # del les commentaires ?

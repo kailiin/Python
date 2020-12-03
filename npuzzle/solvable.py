@@ -7,7 +7,7 @@ import math
 # ex: (empty_parity % 2) == (permutation_parity % 2)
 	# print("empty_parity: ", empty_parity , " -> ", empty_parity % 2)
 	# print("permutation_parity: ", permutation_parity, " -> ", permutation_parity % 2)
-def check_soluble(b=(), final_b=()):
+def check_solvable(b=(), final_b=()):
 	side = int(math.sqrt(len(b)))
 	empty_parity = abs(final_b.index(0) % side - b.index(0) % side) + abs(int(final_b.index(0) / side) - int(b.index(0) / side))
 	permutation_parity = 0

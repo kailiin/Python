@@ -8,6 +8,7 @@ final_dict[3] = (1,2,3, 8,0,4, 7,6,5)
 final_dict[4] = (1,2,3,4, 12,13,14,5, 11,0,15,6, 10,9,8,7)
 final_dict[5] = (1,2,3,4,5, 16,17,18,19,6, 15,24,0,20,7, 14,23,22,21,8, 13,12,11,10,9)
 
+# allow 4-way movement: right, left, top, bottom
 def manhattan(board, side):
 	d = 0
 	i = 1
@@ -17,7 +18,8 @@ def manhattan(board, side):
 		d += abs(final.index(i) % side - board.index(i) % side) + abs(int(final.index(i) / side) - int(board.index(i) / side))
 		i += 1
 	return d
-
+	
+# move at any angle 
 def euclidean(board, side):
 	d = 0
 	i = 1
@@ -29,6 +31,7 @@ def euclidean(board, side):
 		d += math.sqrt(dx * dx + dy * dy)
 		i += 1
 	return d
+
 
 def tiles_out_of_place(board, side):
 	d = 0
