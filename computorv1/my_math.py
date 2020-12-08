@@ -21,3 +21,16 @@ def my_sqrt(val):
 		else:
 			low = mid
 	return mid
+
+def my_round(val, ndigit):
+	s = str(val)
+	f = s.find('.')
+	if f != -1 and len(s) > f + ndigit + 1:
+		if s[f+ndigit+1] >= '5':
+			if val >= 0:
+				s = str(val + 0.000001)
+			else:
+				s = str(val - 0.000001)
+		s = s[:f + ndigit + 1]
+	return s
+

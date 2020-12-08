@@ -5,7 +5,6 @@ import sys
 import dict_ft
 import my_math
 
-
 # if float => last char is '0'or '.'=> remove
 def trim_value(s):
 	while s.find('.') != -1:
@@ -78,8 +77,8 @@ def solve(equation):
 	# degree 1
 	if a == 0:
 		print("The solution is:")
-		result = str(round((-c) / b, 6))
-		print(result)
+		result = my_math.my_round((-c) / b, 6)
+		print(trim_value(result))
 		return
 
 	# degree 2  (b*b = b^2)
@@ -87,21 +86,21 @@ def solve(equation):
 	if delta == 0:
 		result = -(b / (2*a))
 		print("Discriminant is zero, the solution is:")
-		print(trim_value(str(round(result, 6))))
+		print(trim_value(my_math.my_round(result, 6)))
 	elif delta > 0:
 		i = my_math.my_sqrt(delta)
 		x1 = (-b + i) / (2 * a)
 		x2 = (-b - i) / (2 * a)
 		print("Discriminant is strictly positive, the two solutions are:")
-		print(trim_value(str(round(x1, 6))))
-		print(trim_value(str(round(x2, 6))))
+		print(trim_value(my_math.my_round(x1, 6)))
+		print(trim_value(my_math.my_round(x2, 6)))
 	else:
 		i = my_math.my_sqrt(-delta)
 		x1 = (-b + i) / (2 * a)
 		x2 = (-b - i) / (2 * a)
 		print("Discriminant is strictly negative, the two complex solutions are:")
-		print(trim_value(str(round(x1, 6))))
-		print(trim_value(str(round(x2, 6))))
+		print(trim_value(my_math.my_round(x1, 6)))
+		print(trim_value(my_math.my_round(x2, 6)))
 
 if __name__ == "__main__":
 	if len(sys.argv) == 2:
