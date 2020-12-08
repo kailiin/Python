@@ -7,13 +7,16 @@ python3 main.py "4X^2 + 8X + 1 = 4X"										=> -0.5
 python3 main.py "10 + 39X = 4X"												=> -2/7  = -0.285742...
 
 ### degre 2###
-python3 main.py "2X^2 -3X +1.125 = 0"										=> 0.75  3/4
+python3 main.py "2X^2 -3X +1.125 = 0"										=> 0.75 = 3/4
 python3 main.py "-2X^2 + 4X - 2 = 0"										=> 1
 
 python3 main.py "5 * X^0 + 4 * X^1 - 9.3 * X^2 = 1 * X^0"					=> 0.905239   -0.475131
 python3 main.py "X^2 - 16 + 8X = 8X"										=> 4   -4
 python3 main.py "2X^2 - 9X - 5 + 8X = 8X"									=> 5  -0.5
 		
+python3 main.py "X^2 + 5 - X = 0"											=> (1 + i * 4.358899) / 2    (1 - i * 4.358899) / 2
+python3 main.py "-18X^2 + X - 1 = 0"										=> (-1 + i * 8.42615) / -36   (-1 - i * 8.42615) / -36
+
 python3 main.py "8 * X^0 - 6 * X^1 + 0 * X^2 - 5.6 * X^3 = 3 * X^0"			=> degre 3 
 
 

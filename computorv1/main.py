@@ -6,13 +6,21 @@ import dict_ft
 import my_math
 
 # if float => last char is '0'or '.'=> remove
-def trim_value(s):
+def trim_value(s:str):
 	while s.find('.') != -1:
 		if s[-1] == '0' or s[-1] == '.':
 			s = s[:-1]
 		else:
 			break
 	return s
+
+#  print complex solution
+def print_complex(v1, v2, nb_sqrt):
+	s1 = trim_value(str(v1))
+	s2 = trim_value(str(v2))
+	sqrt = trim_value(str(my_math.my_round(nb_sqrt, 6)))
+	print(f"({s1} + i * {sqrt}) / {s2}")
+	print(f"({s1} - i * {sqrt}) / {s2}")
 
 # with coef and degre return format ex: format(5, 2) -> 5X^2
 def format(d, i):
@@ -84,23 +92,22 @@ def solve(equation):
 	# degree 2  (b*b = b^2)
 	delta = (b*b) - (4 * a * c)
 	if delta == 0:
-		result = -(b / (2*a))
+		result = -b / (2*a)
 		print("Discriminant is zero, the solution is:")
 		print(trim_value(my_math.my_round(result, 6)))
 	elif delta > 0:
-		i = my_math.my_sqrt(delta)
-		x1 = (-b + i) / (2 * a)
-		x2 = (-b - i) / (2 * a)
+		sqrt = my_math.my_sqrt(delta)
+		x1 = (-b + sqrt) / (2 * a)
+		x2 = (-b - sqrt) / (2 * a)
 		print("Discriminant is strictly positive, the two solutions are:")
 		print(trim_value(my_math.my_round(x1, 6)))
 		print(trim_value(my_math.my_round(x2, 6)))
 	else:
-		i = my_math.my_sqrt(-delta)
-		x1 = (-b + i) / (2 * a)
-		x2 = (-b - i) / (2 * a)
+		sqrt = my_math.my_sqrt(my_math.my_abs(delta))
+		x1 = (-b + sqrt) / (2 * a)
+		x2 = (-b - sqrt) / (2 * a)
 		print("Discriminant is strictly negative, the two complex solutions are:")
-		print(trim_value(my_math.my_round(x1, 6)))
-		print(trim_value(my_math.my_round(x2, 6)))
+		print_complex(-b, 2*a, sqrt)
 
 if __name__ == "__main__":
 	if len(sys.argv) == 2:
@@ -116,12 +123,9 @@ if __name__ == "__main__":
 				solve(equation)
 			elif equation["max"] <= 0:
 				print("Warning: the polynomial is unsolvable!")
-	# elif len(sys.argv) == 3 and sys.argv[1] == "-b":
-	# 	print("bonus")
 	else:
-		print("usage: python3 main.py [-b] equation")
+		print("usage: python3 main.py equation")
 
 # bonus: input((lexique et syntaxe)
-#		input l'ordre / doublon
-# 		forme naturelle
+#		forme naturelle / input l'ordre / doublon
 # bonus a faire: les etapes
