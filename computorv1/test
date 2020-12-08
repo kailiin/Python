@@ -1,15 +1,38 @@
-"5 * X^0 + 4 * X^1 - 9.3 * X^2 = 1 * X^0"			=> degre 2 => 2 solution
-"5 * X^0 + 4 * X^1 = 4 * X^0"			=> degre 1 			
-"8 * X^0 - 6 * X^1 + 0 * X^2 - 5.6 * X^3 = 3 * X^0"			=> degre 3 
-"4 * X^0 = 4 * X^0"			=> all real numbers
+python3 main.py "4 * X^0 = 4 * X^0"											=> all real numbers
+python3 main.py "4 * X^0 =  X^0"											=> unsolvable
+
+python3 main.py "5 * X^0 + 4 * X^1 = 4 * X^0"								=> degre 1 	-0.25
+python3 main.py "-6 * X^0 + 21 * X^1 = 1 * X^0"								=> 1/3	 =0.333333...
+python3 main.py "4X^2 + 8X + 1 = 4X"										=> -0.5
+python3 main.py "10 + 39X = 4X"												=> -2/7  = -0.285742...
+
+### degre 2###
+python3 main.py "2X^2 -3X +1.125 = 0"										=> 0.75  3/4
+python3 main.py "-2X^2 + 4X - 2 = 0"										=> 1
+
+python3 main.py "5 * X^0 + 4 * X^1 - 9.3 * X^2 = 1 * X^0"					=> 0.905239   -0.475131
+python3 main.py "X^2 - 16 + 8X = 8X"										=> 4   -4
+python3 main.py "2X^2 - 9X - 5 + 8X = 8X"									=> 5  -0.5
+		
+python3 main.py "8 * X^0 - 6 * X^1 + 0 * X^2 - 5.6 * X^3 = 3 * X^0"			=> degre 3 
 
 
 
 Bonus:
-"4 = 3 - X"
+python3 main.py "4 = 3 - X"							=> Polynomial degree: 1   	The solution is: -1.0
+python3 main.py "5 + 4 * X + X^2 = X^2"				=> Polynomial degree: 1     The solution is: -1.25
+python3 main.py "5 + 4X + X^2 = X^2"				=> Polynomial degree: 1     The solution is: -1.25
 
-"5 + 4 * X + X^2= X^2"				=> Polynomial degree: 1     The solution is: -1.25
-"5 + 4X + X^2= X^2"
-"10 + 8X + 2X^2= 2X^2"
+python3 main.py "10 + 8X + 2X^2= 2X^2"
 
-"5+ 4*X - 9.3X^2 = 1"
+python3 main.py "5+ 4*X - 9.3X^2 = 1"
+
+
+Error:
+python3 main.py "5 + 4 * X + X^2 = " 				
+python3 main.py "4 = 3 - X = 3"
+
+python3 main.py "++5 + 4 * X + X^2 = --X^2"
+python3 main.py "4abc = 3 - X"
+python3 main.py "4x = 3 - x"
+python3 main.py "4.2.2X = 3 - X"

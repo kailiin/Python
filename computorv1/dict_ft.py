@@ -1,16 +1,18 @@
 #!/usr/bin/python3
 # coding: utf-8
 
+import re
+
 # return dict[key] value
 # return 0 if not key in dict
 def ft_dict_value(d, k):
-	if k in  d.keys():
+	if k in d.keys():
 		return d[k]
 	else:
 		return 0
 
 # del dict empty value, set new max(degree)
-def ft_del_empty(corrent={}):
+def ft_del_empty(corrent={}):	
 	i = corrent["max"]
 	max = 0
 	while i >= 0:
@@ -26,9 +28,9 @@ def ft_del_empty(corrent={}):
 
 # add dict[degre, coef]
 def ft_append(coef, degre, d):
-	try:
-		d[degre] = (int(coef))
-	except Exception:
+	if degre in d.keys():
+		d[degre] += float(coef)
+	else:
 		d[degre] = (float(coef))
 
 def ft_find_coef(e):
@@ -58,7 +60,8 @@ def ft_find_degre(e):
 	else:
 		return "0"
 
-# str split by "+" and "-" => list [a ∗ x^p]
+# str split "+" and "-" => list [a ∗ x^p]
+# for ele in list: check regex 
 # with ft_find_coef and ft_find_degre => get coef and degree
 # result: dict[p] = a, a: coef p: degre
 def ft_filter(s):
@@ -81,10 +84,23 @@ def ft_filter(s):
 			sub = e.find("-", sub+1)
 		final.append(e[start:])
 
+	if len(final) == 0:
+		raise Exception("Error input, equation empty")
+
 	info = {}
 	info["max"] = 0
+	# ^ [\+|-])?  ([0-9]+(.[0-9]+)?)?  ( (\*X\^|X\^)([0-9]+) |  (\*X|X) )?   $ 
+	reg = "(^[\+|-])?([0-9]+(.[0-9]+)?)?((\*X\^|X\^)([0-9]+)|(\*X|X))?$"
+	error_reg = "^(\+|-)$"
 	for e in final:
 		if e:
+			search = re.match(reg, e)
+			# print("e:",e)
+			# print(search) # else = None
+			error_s = re.match(error_reg, e)
+			# print("errors:", error_s)
+			if search == None or error_s:
+				raise Exception("Error input, lexical errors or syntactic errors.")
 			coef = ft_find_coef(e)
 			degre = int(ft_find_degre(e))
 			if degre > info["max"]:
