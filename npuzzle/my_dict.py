@@ -41,6 +41,10 @@ def tiles_out_of_place(board, side):
 			d += 1
 	return d
 
+def uniform_cost(board:None, side:None):
+	return 0
+
+
 heuristic_func = {}
 heuristic_func["1"] = manhattan
 heuristic_func["2"] = euclidean
