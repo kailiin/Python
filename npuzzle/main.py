@@ -36,7 +36,6 @@ def print_result(side, open, close, exec_time, graphic):
 	complexity_time = len(close)
 	complexity_size = len(close) + len(open)
 	final = my_dict.final_dict[side]
-	close.update(open)
 	result = close[final]
 	my_list = []
 	while result[4] != None:
@@ -63,27 +62,44 @@ def print_result(side, open, close, exec_time, graphic):
 		graphical_interface.init_result(my_list, side)
 
 
-# def gredy_search(board, ft_heuristic, side, graphic):
-# 	start_time = time.time()
-# 	dict_use = {}
+# puzzle: (0= costF, 1= costD, 2= costC, 3= board, 4= parent)
+# just check the best heuristic value  => costD
+# No complete – can get stuck in loops. 
+def gredy_search(board, ft_heuristic, side, graphic):
+	start_time = time.time()
+	current = []
+	dict_close = {}
 
-# 	heuristic = ft_heuristic(board, side)
-# 	final = my_dict.final_dict[side]
-# 	current = [heuristic, heuristic, 0, board, None]
+	heuristic = ft_heuristic(board, side)
+	final = my_dict.final_dict[side]
+	current = [heuristic, heuristic, 0, board, None]
 
-# 	while final != current[3]:
-# 		key = current[3]
-# 		dict_use[key] = current
-# 		l_neighbor = find_neighbor(current, side, ft_heuristic)
-# 		for neighbor in l_neighbor:
-
-
-# 	time_use = time.time() - start_time
-# 	print_result(side, dict_use, {}, time_use, graphic)
+	while current:
+		puzzle = current
+		key = puzzle[3]
+		current = None
+		dict_close[key] = puzzle
+		if final == key:
+			time_use = time.time() - start_time
+			print_result(side, {}, dict_close, time_use, graphic)
+			return
+		else:
+			l_neighbor = find_neighbor(puzzle, side, ft_heuristic)
+			best = None
+			for neighbor in l_neighbor:
+				n_key = neighbor[3]
+				if not (dict_close.get(n_key)):
+					if not best:
+						best = neighbor
+					elif neighbor[1] < best[1]:
+						best = neighbor
+			current = best
+	print("Greedy search error: infinite loop")		
 
 	
 # puzzle: (0= costC, 1=cost_heuristic, 2=cost_C, 3= board, 4= parent)   / 1 no use
-# Just use current cost to sort / selecte   => ft_heuristic = empty / no use
+# Just sort by current cost (lowest cumulative cost)  => ft_heuristic = empty / no use
+# cost of all edges is the same => uniform_cost = BFS (Breadth First Search)
 # heapq: binary trees -> push / pop and return the smallest item from the heap
 def uniform_cost_search(board, side, graphic):
 	start_time = time.time()
@@ -100,7 +116,7 @@ def uniform_cost_search(board, side, graphic):
 		key = puzzle[3]
 		del dict_open[key]
 		dict_close[key] = puzzle
-		if final == puzzle[3]:
+		if final == key:
 			time_use = time.time() - start_time
 			print_result(side, dict_open, dict_close, time_use, graphic)
 			return
@@ -108,7 +124,7 @@ def uniform_cost_search(board, side, graphic):
 			l_neighbor = find_neighbor(puzzle, side, my_dict.uniform_cost)
 			for neighbor in l_neighbor:
 				n_key = neighbor[3]
-				if not (n_key in dict_open or n_key in dict_close):
+				if not (dict_open.get(n_key) or dict_close.get(n_key)):
 					heapq.heappush(list_open, neighbor)
 					dict_open[n_key] = neighbor
 
@@ -143,14 +159,14 @@ def a_star(board, ft_heuristic, side, graphic):
 			l_neighbor = find_neighbor(puzzle, side, ft_heuristic)
 			for neighbor in l_neighbor:
 				n_key = neighbor[3]
-				if not (n_key in dict_open or n_key in dict_close):
+				if not (dict_open.get(n_key) or dict_close.get(n_key)):
 					heapq.heappush(list_open, neighbor)
 					dict_open[n_key] = neighbor
 					continue
-				if n_key in dict_open and neighbor[0] < dict_open[n_key][0]:
+				if dict_open.get(n_key) and neighbor[0] < dict_open[n_key][0]:
 					heapq.heappush(list_open, neighbor)
 					dict_open[n_key] = neighbor
-				# if n_key in dict_close:
+				# if dict_close.get(n_key):
 				# 	pass
 
 if __name__ == "__main__":
@@ -183,7 +199,7 @@ if __name__ == "__main__":
 						if algo[0] == "1":
 							a_star(init_b, my_dict.heuristic_func[heuri[0]], side, bool_graph)
 						else:
-							print("greedy")
+							gredy_search(init_b, my_dict.heuristic_func[heuri[0]], side, bool_graph)
 					else:
 						print("Error: chose 1, 2 or 3")
 			else:

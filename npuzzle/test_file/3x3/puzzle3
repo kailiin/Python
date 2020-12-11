@@ -3,6 +3,12 @@
 # euclidean 150
 # out of place 873
 
+#greedy   tiles out-of-place : infinite loop
+#greedy   euclid 49
+#greedy   manh  43
+
+#uni 17 - 14097 21329
+
 3
 8 4 6
 2 3 5

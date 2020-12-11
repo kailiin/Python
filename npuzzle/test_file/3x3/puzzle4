@@ -1,9 +1,12 @@
 # 24 1190
-# with if neighbor.costF <= best_node.costF: add first
 # 24 307
 # manhattan 1079
 # euclidean 2313
 # out of place 20968
+
+#greedy   tiles out-of-place : infinite loop
+#greedy   euclid 50
+#greedy   manh  58
 
 3
 5 7 6
