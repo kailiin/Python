@@ -1,7 +1,8 @@
-python3 main.py "4 * X^0 = 4 * X^0"											=> all real numbers
+
+python3 main.py "4 * X^0 = 4 * X^0 + 0 * X^2"								=> all real numbers
 python3 main.py "4 * X^0 =  X^0"											=> unsolvable
 
-python3 main.py "5 * X^0 + 4 * X^1 = 4 * X^0"								=> degre 1 	-0.25
+python3 main.py "5 * X^0 + 4 * X^1 = 4 * X^0 + 0 * X^2"						=> degre 1 	-0.25
 python3 main.py "-6 * X^0 + 21 * X^1 = 1 * X^0"								=> 1/3	 =0.333333...
 python3 main.py "4X^2 + 8X + 1 = 4X"										=> -0.5
 python3 main.py "10 + 39X = 4X"												=> -2/7  = -0.285742...
@@ -18,7 +19,7 @@ python3 main.py "X^2 + 5 - X = 0"											=> (1 + i * 4.358899) / 2    (1 - i 
 python3 main.py "-18X^2 + X - 1 = 0"										=> (-1 + i * 8.42615) / -36   (-1 - i * 8.42615) / -36
 
 python3 main.py "8 * X^0 - 6 * X^1 + 0 * X^2 - 5.6 * X^3 = 3 * X^0"			=> degre 3 
-
+python3 main.py "8 * X^0 - 6 * X^1 + 0 * X^2 = 3 * X^0 + X^5"	            => degre 5 
 
 
 Bonus:
@@ -34,6 +35,8 @@ python3 main.py "5+ 4*X - 9.3X^2 = 1"
 Error:
 python3 main.py "5 + 4 * X + X^2 = " 				
 python3 main.py "4 = 3 - X = 3"
+
+python3 main.py "-3X + 2X^2  +1.125 = 0"
 
 python3 main.py "++5 + 4 * X + X^2 = --X^2"
 python3 main.py "4abc = 3 - X"

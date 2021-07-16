@@ -61,7 +61,7 @@ def check_equation(s):
 	i = 0
 	max = my_equation["max"]
 	bool_first = True
-	print(f"Reduced form: ", end="")
+	print("Reduced form: ", end="")
 	while i <= max:
 		if i in my_equation.keys() and my_equation[i] > 0:
 			if bool_first:
@@ -89,7 +89,7 @@ def solve(equation):
 		print(trim_value(result))
 		return
 
-	# degree 2  (b*b = b^2)
+	# degree 2  (b*b = b^2)  => b^2 - 4ac
 	delta = (b*b) - (4 * a * c)
 	if delta == 0:
 		result = -b / (2*a)
@@ -104,8 +104,8 @@ def solve(equation):
 		print(trim_value(my_math.my_round(x2, 6)))
 	else:
 		sqrt = my_math.my_sqrt(my_math.my_abs(delta))
-		x1 = (-b + sqrt) / (2 * a)
-		x2 = (-b - sqrt) / (2 * a)
+		# x1 = (-b + sqrt) / (2 * a)
+		# x2 = (-b - sqrt) / (2 * a)
 		print("Discriminant is strictly negative, the two complex solutions are:")
 		print_complex(-b, 2*a, sqrt)
 
@@ -128,4 +128,3 @@ if __name__ == "__main__":
 
 # bonus: input((lexique et syntaxe)
 #		forme naturelle / input l'ordre / doublon
-# bonus a faire: les etapes

@@ -89,16 +89,13 @@ def ft_filter(s):
 
 	info = {}
 	info["max"] = 0
-	# ^ [\+|-])?  ([0-9]+(.[0-9]+)?)?  ( (\*X\^|X\^)([0-9]+) |  (\*X|X) )?   $ 
 	reg = "(^[\+|-])?([0-9]+(.[0-9]+)?)?((\*X\^|X\^)([0-9]+)|(\*X|X))?$"
+	# ex: 8 + = 0  => error
 	error_reg = "^(\+|-)$"
 	for e in final:
 		if e:
 			search = re.match(reg, e)
-			# print("e:",e)
-			# print(search) # else = None
 			error_s = re.match(error_reg, e)
-			# print("errors:", error_s)
 			if search == None or error_s:
 				raise Exception("Error input, lexical errors or syntactic errors.")
 			coef = ft_find_coef(e)

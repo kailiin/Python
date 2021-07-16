@@ -14,7 +14,7 @@ def my_sqrt(val):
 	for _ in range(1000):
 		mid = (low + hight) /2
 		mid_t = mid * mid 
-		if mid * mid_t == val:
+		if mid_t == val:	
 			return mid
 		elif mid_t > val:
 			hight = mid
@@ -22,6 +22,8 @@ def my_sqrt(val):
 			low = mid
 	return mid
 
+# 0.12345678 => 0.123457   
+# -0.1234567 => -0.123457
 def my_round(val, ndigit):
 	s = str(val)
 	f = s.find('.')
