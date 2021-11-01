@@ -24,4 +24,4 @@ theta1 pour pouvoir l’utiliser dans le premier programme.<br>
 </p>
 
 
-![Screenshot](https://github.com/kailiin/Python/blob/master/ft_linear_regression/img/linear_regression.png)
+![Screenshot](./img/linear_regression.png)
