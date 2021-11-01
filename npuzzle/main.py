@@ -216,5 +216,5 @@ if __name__ == "__main__":
 	else:
 		print("usage: python3 ./main.py [-p -g] file_name")
 
-# test sur 5x5  bonus: spped mode?
-# del les commentaires ?
+# sudo apt-get install python3.6-tk
+# pip3 install tk

@@ -26,11 +26,14 @@ def find_size(line):
 		comment_index = c.find("#")
 		if comment_index == 0:
 			return size
+		# if 3#comment..... -> end line
 		elif comment_index > 0:
 			c = c[0:comment_index]
 			if check_numeric(c) and size == None:
 				return int(c)
-		#check if  3 4 #....
+			else:
+				return -1
+		# Without comment
 		if check_numeric(c) and size == None:
 			size = int(c)
 		else:
@@ -39,7 +42,7 @@ def find_size(line):
 
 # check line content, if content:
 # 	comment / null / space  -> return 0
-# 	content == numeric and content < max and not duplicate -> add content to list and counter +=1  else return -1
+# 	content == numeric and content < max and not duplicate -> add content to list and counter +=1  else return -1 (Error)
 # 	content != numeric -> return -1 = Error
 # if counter != size -> return -1 else return counter ==> line OK
 def check_line(line, size, listnumber):
@@ -56,6 +59,9 @@ def check_line(line, size, listnumber):
 				listnumber.append(int(c))
 				counter += 1
 				break
+			else:
+				return -1
+		# without comment 
 		if check_numeric(c) and int(c) < max and (not int(c) in listnumber):
 			listnumber.append(int(c))
 			counter += 1
@@ -77,8 +83,8 @@ def check_input(file_name):
 			for line in f:
 				if size == None:
 					size = find_size(line)
-					if size != None and size < 3 and size > 5:
-						raise Exception("Size error: invalid or < 3 or > 5")
+					if size != None and (size < 3 or size > 6):
+						raise Exception("Size error: invalid or < 3 or > 6")
 				elif check_line(line, size, listnumber) > 0:
 					count_size +=1
 					continue
