@@ -9,3 +9,5 @@ Avec npuzzle-gen.py, on génère des taquins puis on résout avec ce programme.
 
 
 usage: python3 ./main.py [-p] [-g] file_name
+
+![Screenshot](https://github.com/kailiin/Python/blob/master/npuzzle/img/npuzzle_00.png)
